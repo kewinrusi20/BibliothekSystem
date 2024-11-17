@@ -70,7 +70,7 @@ public class KundeUi {
 	}
 
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	medienAusgabe.toString();
+	System.out.println(medienAusgabe.toString());
     }
     
     public void mediumAusleihen(int idUser) {
@@ -93,8 +93,8 @@ public class KundeUi {
 	
 	for (Ausleihe ausleihe : vs.getListeAusliehen().values()) {
 	    if (ausleihe.getIdKunde() == idUser) {
-		ausleihenAusgabe.append(vs.getListeMedien().get(ausleihe.getIdMedium()));
-		ausleihenAusgabe.append(ausleihe.getAusleiheDauer());
+		ausleihenAusgabe.append("\n- " + vs.getListeMedien().get(ausleihe.getIdMedium()));
+		ausleihenAusgabe.append("\n noch " + ausleihe.getAusleiheDauer() + " Tage übrig");
 	    }
 	}
 	System.out.println(ausleihenAusgabe.toString());
