@@ -28,6 +28,7 @@ public abstract class Medium {
 	setBibId(id);
     }
     
+    
     // ---------------------------------------------------------
     // SETTER & GETTER    
     public void setBibId() {
