@@ -1,12 +1,14 @@
 package de.hs_mannheim.pr2.bibliothek.domain.medien;
 
+import java.util.Random;
+
 public abstract class Medium {
-    // Medium
-    int id;
+    // Attribute
+    int bibId;
     String name;
     
     // Ausleihe
-    boolean ausleihe;
+    boolean ausleiheStatus;
     int ausleiheTage;
     int maximaleAusleiheTage;
     
@@ -14,23 +16,28 @@ public abstract class Medium {
     boolean verlaengerbarkeit;
     int maximaleVerlaengerbarkeit;
     
-    
+
+    // ---------------------------------------------------------
     // KONSTRUKTOR
     public Medium(String name) {
 	setName(name);
+	setBibId();
     }    
     public Medium(String name, int id) {
 	setName(name);
-	setId(id);
+	setBibId(id);
     }
     
-    
-    // SETTER & GETTER
-    public void setId(int id) {
-        this.id = id;
+    // ---------------------------------------------------------
+    // SETTER & GETTER    
+    public void setBibId() {
+        this.bibId = (new Random()).nextInt(1000000);
     }
-    public int getId() {
-        return id;
+    public void setBibId(int BibId) {
+        this.bibId = BibId;
+    }
+    public int getBibId() {
+        return bibId;
     }
 
 
@@ -45,10 +52,10 @@ public abstract class Medium {
     
     // Ausleihe
     public void setAusleihe(boolean ausleihe) {
-        this.ausleihe = ausleihe;
+        this.ausleiheStatus = ausleihe;
     }
     public boolean isAusleihe() {
-        return ausleihe;
+        return ausleiheStatus;
     }
     
 
@@ -90,6 +97,6 @@ public abstract class Medium {
     // -----------------------------------------------
     @Override
     public String toString() {
-	return getName();
+	return String.format("Name: %s, ID: %s", getName(), getBibId());
     }
 }
