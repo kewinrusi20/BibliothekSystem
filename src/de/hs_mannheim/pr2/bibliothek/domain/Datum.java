@@ -1,12 +1,13 @@
 package de.hs_mannheim.pr2.bibliothek.domain;
 
 public class Datum {
-    private int tag, monat, jahr;
+    private int tag, monat, jahr, counter;
     
     public Datum(int tag, int monat, int jahr) {
 	setTag(tag);
 	setMonat(monat);
 	setJahr(jahr);
+	setCounter(tag ,monat, jahr);
     }
     
     
@@ -36,6 +37,14 @@ public class Datum {
     }
     public int getJahr() {
         return jahr;
+    }
+    
+    
+    public void setCounter(int tag, int monat, int jahr) {
+ 	this.counter = tag * monat * jahr;
+     }
+    public int getCounter() {
+	return this.counter;
     }
     
     

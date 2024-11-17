@@ -4,7 +4,7 @@ import java.util.Random;
 
 public abstract class Medium {
     // Attribute
-    int bibId;
+    int id;
     String name;
     
     // Ausleihe
@@ -21,25 +21,26 @@ public abstract class Medium {
     // KONSTRUKTOR
     public Medium(String name) {
 	setName(name);
-	setBibId();
+	setId();
     }    
     public Medium(String name, int id) {
 	setName(name);
-	setBibId(id);
+	setId(id);
     }
     
     
     
     // ---------------------------------------------------------
     // SETTER & GETTER
-    public void setBibId() {
-        this.bibId = (new Random()).nextInt(1000000);
+    // Id
+    public void setId() {
+        this.id = (new Random()).nextInt(1000000);
     }
-    public void setBibId(int BibId) {
-        this.bibId = BibId;
+    public void setId(int id) {
+        this.id = id;
     }
-    public int getBibId() {
-        return bibId;
+    public int getId() {
+        return id;
     }
 
 
@@ -101,6 +102,6 @@ public abstract class Medium {
     // -----------------------------------------------
     @Override
     public String toString() {
-	return String.format("Name: %s, ID: %s", getName(), getBibId());
+	return String.format("Name: %s, ID: %s", getName(), getId());
     }
 }

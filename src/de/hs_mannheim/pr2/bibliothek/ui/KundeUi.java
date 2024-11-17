@@ -3,6 +3,7 @@ package de.hs_mannheim.pr2.bibliothek.ui;
 import java.util.HashMap;
 import java.util.Scanner;
 
+import de.hs_mannheim.pr2.bibliothek.domain.Ausleihe;
 import de.hs_mannheim.pr2.bibliothek.domain.medien.Medium;
 import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 
@@ -23,13 +24,15 @@ public class KundeUi {
     // ---------------------------------------------------------
     // PROGRAM LOOP
     public void hauptMenue(int idUser) {
-	System.out.println("Willkommen in unserer Bibliothek");
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	System.out.println("Willkommen " + vs.getListeKonten().get(idUser).getName());
+	kontoInfo(idUser);
 	
 	int eingabe;
 	
 	hauptmenue:
 	while(true) {
-	    System.out.print("\n\n\n\n\n\n\n\n\n\n");
+	    System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	    System.out.println("1: Medien ausdrücken");
 	    System.out.println("2: Medium ausleihen");
 	    System.out.println("3: Medium zurückgeben\n");
@@ -45,8 +48,8 @@ public class KundeUi {
 	    switch (eingabe) {
 	    case 1: printListeMedien(); break;
 	    case 2: mediumAusleihen(idUser); break;
-	    case 3: mediumZurueckgeben(); break;
-	    case 4: break;
+	    case 3: mediumZurueckgeben(idUser); break;
+	    case 4: kontoInfo(idUser); break;
 	    case 5: break;
 	    case 6: break;
 	    case 7: break;
@@ -59,29 +62,42 @@ public class KundeUi {
     } // close: hauptMenue()
     
     public void printListeMedien() {
-	HashMap<Integer, Medium> listeMedien = vs.getListeMedien();
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	StringBuilder medienAusgabe = new StringBuilder("Medienliste:\n");
 
-	for (Medium medium : listeMedien.values()) {
+	for (Medium medium : vs.getListeMedien().values()) {
 	    medienAusgabe.append(String.format("- %s\n", medium));
 	}
-	
+
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	medienAusgabe.toString();
-	
     }
     
     public void mediumAusleihen(int idUser) {
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	kontoInfo(idUser);
 	System.out.println("Bitte Medium Id eingeben");
 	vs.setListeAusleihen(idUser, sc.nextInt());
     }
     
-    public void mediumZurueckgeben() {
+    public void mediumZurueckgeben(int idUser) {
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	kontoInfo(idUser);
 	System.out.println("Bitte Ausleihe Id eingeben");
 	vs.setListAusleihe(sc.nextInt());
     }
     
-    public void kontoInfo() {
+    public void kontoInfo(int idUser) {
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	StringBuilder ausleihenAusgabe = new StringBuilder("Medien Ausleiheliste:\n");
 	
+	for (Ausleihe ausleihe : vs.getListeAusliehen().values()) {
+	    if (ausleihe.getIdKunde() == idUser) {
+		ausleihenAusgabe.append(vs.getListeMedien().get(ausleihe.getIdMedium()));
+		ausleihenAusgabe.append(ausleihe.getAusleiheDauer());
+	    }
+	}
+	System.out.println(ausleihenAusgabe.toString());
     }
     
     public void fristVerlaengern() {

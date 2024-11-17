@@ -11,14 +11,14 @@ public class Verwaltungssystem {
     private HashMap<Integer, Medium> listeMedien = new HashMap<>();
     private HashMap<Integer, User> listeKonten = new HashMap<>();
     private HashMap<Integer, Ausleihe> listeAusleihe = new HashMap<>();
-    private Datum datum = new Datum(17, 11, 2024);
+    public static Datum datum = new Datum(17, 11, 2024);
     
     
     
     // ---------------------------------------------------------
     // MEDIEN
     public void setListeMedien(Medium medium) {
-	listeMedien.put(medium.getBibId(), medium);
+	listeMedien.put(medium.getId(), medium);
     }
     
     public HashMap<Integer, Medium> getListeMedien() {
@@ -46,7 +46,7 @@ public class Verwaltungssystem {
     // ---------------------------------------------------------
     // AUSLEIHE
     public void setListeAusleihen(int idKunde, int idMedium) {
-	Ausleihe ausleihe = new Ausleihe(idKunde, idMedium, getDatum());
+	Ausleihe ausleihe = new Ausleihe(listeKonten.get(idKunde), listeMedien.get(idMedium), getDatum());
 	listeAusleihe.put(ausleihe.getIdAusleihe(), ausleihe);
     }
     

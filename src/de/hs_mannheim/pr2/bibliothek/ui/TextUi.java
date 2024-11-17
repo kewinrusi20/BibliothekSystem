@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 import de.hs_mannheim.pr2.bibliothek.domain.users.Admin;
+import de.hs_mannheim.pr2.bibliothek.domain.users.Kunde;
 import de.hs_mannheim.pr2.bibliothek.domain.users.Lernende;
 import de.hs_mannheim.pr2.bibliothek.domain.users.User;
 import de.hs_mannheim.pr2.bibliothek.domain.users.Vollzahler;
@@ -51,7 +52,7 @@ public class  TextUi {
 	    switch (eingabe) {
 	    case 1: kontoAnmelden(); break;
 	    //case 2: kontoRegistieren(); break;
-	    case 3: printKonten();break;
+	    case 3: printKonten(); break;
 	    case 4: break;
 	    case 5: break;
 	    case 6: break;
@@ -69,11 +70,12 @@ public class  TextUi {
 	System.out.println("Bitte Konto ID eingabe:");
 	int eingabe = sc.nextInt();
 	if (vs.isKontoDa(eingabe)) {
-	    System.out.println("Willkommen " + vs.getListeKonten().get(eingabe).getName());
-	    System.out.println(vs.getListeKonten().get(eingabe).getClass());
+	    if (vs.getListeKonten().get(eingabe) instanceof Kunde) {
+		kundeUi.hauptMenue(eingabe);
+	    } else if (vs.getListeKonten().get(eingabe) instanceof Admin) {
+		adminUi.hauptMenue(eingabe);
+	    }
 	    
-	    adminUi.hauptMenue(eingabe);
-	    kundeUi.hauptMenue(eingabe);
 	    
 	}
     }
@@ -95,12 +97,9 @@ public class  TextUi {
 	for (User user : listeKonten.values()) {
 	    kontenAusgabe.append(String.format("- %s\n", user));
 	}
-    	
-	kontenAusgabe.toString();
+
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	System.out.println(kontenAusgabe.toString());
     }
     
-    
-    
-    
-
 }

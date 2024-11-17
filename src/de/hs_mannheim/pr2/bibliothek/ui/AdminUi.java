@@ -29,13 +29,14 @@ public class AdminUi {
     // ---------------------------------------------------------
     // PROGRAM LOOP
     public void hauptMenue(int idUser) {
-	System.out.println("Willkommen in unserer Bibliothek");
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	System.out.println("Willkommen " + vs.getListeKonten().get(idUser).getName());
 	
 	int eingabe;
 	
 	hauptmenue:
 	while(true) {
-	    System.out.print("\n\n\n\n\n\n\n\n\n\n");
+	    System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	    //System.out.println("1: Medium Registieren");
 	    System.out.println("2: Gebühren überarbeiten");
 	    System.out.println("---------------------\n");
