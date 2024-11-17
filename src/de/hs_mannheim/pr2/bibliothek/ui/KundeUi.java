@@ -1,7 +1,9 @@
 package de.hs_mannheim.pr2.bibliothek.ui;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
+import de.hs_mannheim.pr2.bibliothek.domain.medien.Medium;
 import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 
 public class KundeUi {
@@ -57,7 +59,15 @@ public class KundeUi {
     } // close: hauptMenue()
     
     public void printListeMedien() {
-	vs.printListeMedien();
+	HashMap<Integer, Medium> listeMedien = vs.getListeMedien();
+	StringBuilder medienAusgabe = new StringBuilder("Medienliste:\n");
+
+	for (Medium medium : listeMedien.values()) {
+	    medienAusgabe.append(String.format("- %s\n", medium));
+	}
+	
+	medienAusgabe.toString();
+	
     }
     
     public void mediumAusleihen(int idUser) {

@@ -1,9 +1,11 @@
 package de.hs_mannheim.pr2.bibliothek.ui;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 import de.hs_mannheim.pr2.bibliothek.domain.users.Admin;
 import de.hs_mannheim.pr2.bibliothek.domain.users.Lernende;
+import de.hs_mannheim.pr2.bibliothek.domain.users.User;
 import de.hs_mannheim.pr2.bibliothek.domain.users.Vollzahler;
 import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 
@@ -87,7 +89,14 @@ public class  TextUi {
     }
     
     public void printKonten() {
-	System.out.println(vs.printKonten());
+	HashMap<Integer, User> listeKonten = vs.getListeKonten();
+    	StringBuilder kontenAusgabe = new StringBuilder("Kontenliste:\n");
+
+	for (User user : listeKonten.values()) {
+	    kontenAusgabe.append(String.format("- %s\n", user));
+	}
+    	
+	kontenAusgabe.toString();
     }
     
     
