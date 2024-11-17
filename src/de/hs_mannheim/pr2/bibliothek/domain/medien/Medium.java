@@ -29,8 +29,9 @@ public abstract class Medium {
     }
     
     
+    
     // ---------------------------------------------------------
-    // SETTER & GETTER    
+    // SETTER & GETTER
     public void setBibId() {
         this.bibId = (new Random()).nextInt(1000000);
     }
@@ -94,6 +95,8 @@ public abstract class Medium {
     public int getMaximaleVerlaengerbarkeit() {
         return maximaleVerlaengerbarkeit;
     }
+    
+    
     
     // -----------------------------------------------
     @Override

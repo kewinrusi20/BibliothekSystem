@@ -10,22 +10,36 @@ import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 public class  TextUi {
     Scanner sc = new Scanner(System.in);
     Verwaltungssystem vs;
+    AdminUi adminUi;
+    KundeUi kundeUi;
+
     
+    
+    // ---------------------------------------------------------
+    // KONSTRUKTOR
     public TextUi(Verwaltungssystem vs) {
 	this.vs = vs;
-	hauptMenue();
-    }
-    
-    public void hauptMenue() {
-	System.out.println("Willkommen in unserer Bibliothek");
+	adminUi = new AdminUi(vs);
+	kundeUi = new KundeUi(vs);
+
+	// Hard Coding Objects
+	kontoRegistieren();
 	
+	System.out.println("Willkommen in unserer Bibliothek");
+    }
+
+    
+    
+    // ---------------------------------------------------------
+    // PROGRAM LOOP
+    public void hauptMenue() {
 	int eingabe;
 	
 	hauptmenue:
 	while(true) {
 	    System.out.print("\n\n\n\n\n\n\n\n\n\n");
 	    System.out.println("1: Anmelung");
-	    System.out.println("2: Registrieren");
+	    //System.out.println("2: Registrieren");
 	    System.out.println("3: Konte ausdrücken");
 	    System.out.println("---------------------\n");
 	    
@@ -34,7 +48,7 @@ public class  TextUi {
 	    eingabe = sc.nextInt();
 	    switch (eingabe) {
 	    case 1: kontoAnmelden(); break;
-	    case 2: kontoRegistieren(); break;
+	    //case 2: kontoRegistieren(); break;
 	    case 3: printKonten();break;
 	    case 4: break;
 	    case 5: break;
@@ -52,8 +66,13 @@ public class  TextUi {
     public void kontoAnmelden() {
 	System.out.println("Bitte Konto ID eingabe:");
 	int eingabe = sc.nextInt();
-	if (vs.getListeKonten().containsKey(eingabe)) {
+	if (vs.isKontoDa(eingabe)) {
 	    System.out.println("Willkommen " + vs.getListeKonten().get(eingabe).getName());
+	    System.out.println(vs.getListeKonten().get(eingabe).getClass());
+	    
+	    adminUi.hauptMenue(eingabe);
+	    kundeUi.hauptMenue(eingabe);
+	    
 	}
     }
     
@@ -70,5 +89,9 @@ public class  TextUi {
     public void printKonten() {
 	System.out.println(vs.printKonten());
     }
+    
+    
+    
+    
 
 }
