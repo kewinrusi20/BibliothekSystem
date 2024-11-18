@@ -41,7 +41,7 @@ public class Datum {
     
     
     public void setCounter(int tag, int monat, int jahr) {
- 	this.counter = tag * monat * jahr;
+ 	this.counter = tag + (20 * monat) + (365 * jahr);
      }
     public int getCounter() {
 	return this.counter;

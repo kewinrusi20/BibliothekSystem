@@ -11,7 +11,7 @@ public class Verwaltungssystem {
     private TreeMap<Integer, User> listeKonten = new TreeMap<>();
     private TreeMap<Integer, Medium> listeMedien = new TreeMap<>();
     private TreeMap<Integer, Ausleihe> listeAusleihe = new TreeMap<>();
-    public static Datum datum = new Datum(17, 11, 2024);
+    public Datum datum = new Datum(17, 11, 2024);
 
 
 
@@ -46,7 +46,7 @@ public class Verwaltungssystem {
     // ---------------------------------------------------------
     // AUSLEIHE
     public void setListeAusleihen(int idKunde, int idMedium) {
-	Ausleihe ausleihe = new Ausleihe(listeKonten.get(idKunde), listeMedien.get(idMedium), getDatum());
+	Ausleihe ausleihe = new Ausleihe(listeKonten.get(idKunde), listeMedien.get(idMedium), getDatum(), this);
 	listeAusleihe.put(ausleihe.getIdAusleihe(), ausleihe);
     }
     

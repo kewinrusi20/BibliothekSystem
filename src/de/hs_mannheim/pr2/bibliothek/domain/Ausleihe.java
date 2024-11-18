@@ -12,6 +12,7 @@ import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 public class Ausleihe {
     User user;
     Medium medium;
+    Verwaltungssystem vs;
 
     int idAusleihe;
     int idKunde;
@@ -23,8 +24,10 @@ public class Ausleihe {
     int maximaleAusleiheDauer;
     int ausleiheDauer;
     int verlaengerbarkeit;
+    int extraDauer;
     
-    public Ausleihe(User user, Medium medium, Datum datumAusleihe) {
+    public Ausleihe(User user, Medium medium, Datum datumAusleihe, Verwaltungssystem vs) {
+	this.vs = vs;
 	setUser(user);
 	setUser(medium);
 	setIdKunde(user.getId());
@@ -122,7 +125,8 @@ public class Ausleihe {
     
 
     public void setAusleiheDauer() {
-	this.ausleiheDauer =  maximaleAusleiheDauer - (Verwaltungssystem.datum.getCounter() - datumAusleihe.getCounter());
+	System.out.println("extraDauer: " + extraDauer);
+	ausleiheDauer =  (maximaleAusleiheDauer + extraDauer) - (vs.datum.getCounter() - datumAusleihe.getCounter());
     }
     public int getAusleiheDauer() {
 	return ausleiheDauer;
@@ -147,9 +151,21 @@ public class Ausleihe {
         return verlaengerbarkeit;
     }
     
+    public void setExtraDauer() {
+	System.out.println("extraDauer Verlängern: " + extraDauer);
+	
+	if (verlaengerbarkeit >= 1) {
+	    extraDauer += maximaleAusleiheDauer;
+	}
+    }
+    
+    public int getExtraDauer() {
+	return extraDauer;
+    }
+    
     @Override
     public String toString() {
-	return String.format("- ID Medium: %s, ID Kunde: %s", getIdMedium(), getIdKunde());
+	return String.format("- ID Ausleihe: %d ID %s: %s, ID Kunde: %s", getIdAusleihe(), vs.getListeMedien().get(idMedium).getClass().getSimpleName(), getIdMedium(), getIdKunde());
     }
 
 }

@@ -52,7 +52,7 @@ public class KundeUi {
 	    case 2: mediumAusleihen(idUser); break;
 	    case 3: mediumZurueckgeben(idUser); break;
 	    case 4: printEigeneListeAusliehe(idUser); break;
-	    case 5: break;
+	    case 5: fristVerlaengern(idUser); break;
 	    case 6: break;
 	    case 7: break;
 	    case 8: break;
@@ -63,6 +63,9 @@ public class KundeUi {
 	}
     } // close: hauptMenue()
     
+    
+    
+    // CASE 1
     public void printListeMedien() {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	StringBuilder medienAusgabe = new StringBuilder("Medienliste:\n");
@@ -75,7 +78,8 @@ public class KundeUi {
     }
 
 
-
+    
+    // CASE 2
     public void mediumAusleihen(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println("Bitte Medium Id eingeben");
@@ -86,6 +90,7 @@ public class KundeUi {
 
 
 
+    // CASE 3
     public void mediumZurueckgeben(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	printEigeneListeAusliehe(idUser);
@@ -96,14 +101,9 @@ public class KundeUi {
     }
 
 
-    public void setEigeneListeAusliehe(int idUser) {
-	((Kunde) vs.getListeKonten().get(idUser)).setEigeneListeAusliehe(vs.getListeAusleihen());
-    }
-
     
+    // CASE 4
     public void printEigeneListeAusliehe(int idUser) {
-	
-
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	StringBuilder ausleihenAusgabe = new StringBuilder("Medien Ausleiheliste:\n");
 	
@@ -118,29 +118,28 @@ public class KundeUi {
 	System.out.println(ausleihenAusgabe.toString());
     }
     
-    /*
-    public void kontoInfo(int idUser) {
-	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	StringBuilder ausleihenAusgabe = new StringBuilder("Medien Ausleiheliste:\n");
+    
+    
+    // CASE 5
+    public void fristVerlaengern(int idUser) {
+	printEigeneListeAusliehe(idUser);
 	
-	for (Ausleihe ausleihe : vs.getListeAusliehen().values()) {
-	    if (ausleihe.getIdKunde() == idUser) {
-		ausleihenAusgabe.append("\n- " + vs.getListeMedien().get(ausleihe.getIdMedium()));
-		ausleihenAusgabe.append("\n noch " + ausleihe.getAusleiheDauer() + " Tage übrig");
-	    }
-	}
-	System.out.println(ausleihenAusgabe.toString());
-    }
-     */
-
-
-    public void fristVerlaengern() {
+	System.out.println("Bitte Ausleihe ID zum Verlängerung eingeben");
+	int idAusleihe = sc.nextInt();
 	
+	vs.getListeAusleihen().get(idAusleihe).setExtraDauer();
+	vs.getListeAusleihen().get(idAusleihe).setAusleiheDauer();
     }
 
 
     
+    // CASE 6
     public void bezahlen() {
 	
+    }
+    
+    
+    public void setEigeneListeAusliehe(int idUser) {
+	((Kunde) vs.getListeKonten().get(idUser)).setEigeneListeAusliehe(vs.getListeAusleihen());
     }
 }
