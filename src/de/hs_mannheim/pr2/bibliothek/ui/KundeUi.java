@@ -69,24 +69,29 @@ public class KundeUi {
 	    medienAusgabe.append(String.format("- %s\n", medium));
 	}
 
-	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println(medienAusgabe.toString());
     }
-    
+
+
+
     public void mediumAusleihen(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	kontoInfo(idUser);
 	System.out.println("Bitte Medium Id eingeben");
 	vs.setListeAusleihen(idUser, sc.nextInt());
     }
-    
+
+
+
     public void mediumZurueckgeben(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	kontoInfo(idUser);
 	System.out.println("Bitte Ausleihe Id eingeben");
 	vs.setListAusleihe(sc.nextInt());
     }
-    
+
+
+
     public void kontoInfo(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	StringBuilder ausleihenAusgabe = new StringBuilder("Medien Ausleiheliste:\n");
@@ -99,10 +104,14 @@ public class KundeUi {
 	}
 	System.out.println(ausleihenAusgabe.toString());
     }
-    
+
+
+
     public void fristVerlaengern() {
 	
     }
+
+
     
     public void bezahlen() {
 	

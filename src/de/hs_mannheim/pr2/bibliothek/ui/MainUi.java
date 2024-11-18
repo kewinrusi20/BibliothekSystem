@@ -10,7 +10,7 @@ import de.hs_mannheim.pr2.bibliothek.domain.users.User;
 import de.hs_mannheim.pr2.bibliothek.domain.users.Vollzahler;
 import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 
-public class  TextUi {
+public class MainUi {
     Scanner sc = new Scanner(System.in);
     Verwaltungssystem vs;
     AdminUi adminUi;
@@ -20,7 +20,7 @@ public class  TextUi {
     
     // ---------------------------------------------------------
     // KONSTRUKTOR
-    public TextUi(Verwaltungssystem vs) {
+    public MainUi(Verwaltungssystem vs) {
 	this.vs = vs;
 	adminUi = new AdminUi(vs);
 	kundeUi = new KundeUi(vs);

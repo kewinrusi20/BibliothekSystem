@@ -8,13 +8,29 @@ import de.hs_mannheim.pr2.bibliothek.domain.medien.Medium;
 import de.hs_mannheim.pr2.bibliothek.domain.users.User;
 
 public class Verwaltungssystem {
-    private HashMap<Integer, Medium> listeMedien = new HashMap<>();
     private HashMap<Integer, User> listeKonten = new HashMap<>();
+    private HashMap<Integer, Medium> listeMedien = new HashMap<>();
     private HashMap<Integer, Ausleihe> listeAusleihe = new HashMap<>();
     public static Datum datum = new Datum(17, 11, 2024);
-    
-    
-    
+
+
+
+    // ---------------------------------------------------------
+    // KONTEN
+    public void setListeKonten(User user) {
+        listeKonten.put(user.getId(), user);
+    }
+
+    public HashMap<Integer, User> getListeKonten() {
+        return listeKonten;
+    }
+
+    public boolean isKontoDa(int eingabe) {
+        return getListeKonten().containsKey(eingabe);
+    }
+
+
+
     // ---------------------------------------------------------
     // MEDIEN
     public void setListeMedien(Medium medium) {
@@ -25,23 +41,7 @@ public class Verwaltungssystem {
 	return listeMedien;
     }
     
-    
-    
-    // ---------------------------------------------------------
-    // KONTEN
-    public void setListeKonten(User user) {
-	listeKonten.put(user.getId(), user);
-    }
-    
-    public HashMap<Integer, User> getListeKonten() {
-	return listeKonten;
-    }
-    
-    public boolean isKontoDa(int eingabe) {
-	return getListeKonten().containsKey(eingabe);
-    }
 
-    
     
     // ---------------------------------------------------------
     // AUSLEIHE
