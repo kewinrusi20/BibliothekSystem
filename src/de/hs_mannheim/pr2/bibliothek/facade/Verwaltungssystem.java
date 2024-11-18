@@ -54,7 +54,7 @@ public class Verwaltungssystem {
 	listeAusleihe.remove(idAusleihe);
     }
     
-    public TreeMap<Integer, Ausleihe> getListeAusliehen(){
+    public TreeMap<Integer, Ausleihe> getListeAusleihen(){
 	return listeAusleihe;
     }
     
@@ -63,7 +63,10 @@ public class Verwaltungssystem {
     // ---------------------------------------------------------
     // DATUM
     public void setDatum(int tag, int monat, int jahr) {
-	datum = new Datum(17, 11, 2024);
+	datum = new Datum(tag, monat, jahr);
+	for (Ausleihe ausleihe : getListeAusleihen().values()) {
+	    ausleihe.setAusleiheDauer();
+	}
     }
     
     public Datum getDatum() {

@@ -12,10 +12,10 @@ import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 public class Ausleihe {
     User user;
     Medium medium;
-    
+
+    int idAusleihe;
     int idKunde;
     int idMedium;
-    int idAusleihe;
     
     Datum datumAusleihe;
     Datum datumRueckgabe;
@@ -33,6 +33,7 @@ public class Ausleihe {
 	setDatumAusleihe(datumAusleihe);
 	setMaximaleAusleiheDauer(medium);
 	setVerlaengerbarkeit(medium);
+	setAusleiheDauer();
     }
 
     

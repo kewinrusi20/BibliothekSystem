@@ -39,13 +39,14 @@ public class AdminUi {
 	    System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	    //System.out.println("1: Medium Registieren");
 	    System.out.println("2: Gebühren überarbeiten");
+	    System.out.println("3: Datum Ändern");
 	    System.out.println("---------------------\n");
 	    
 	    eingabe = sc.nextInt();
 	    switch (eingabe) {
 	    //case 1: mediumRegistrieren(); break;
 	    case 2: gebuehrenueberarbeiten(); break;
-	    case 3: break;
+	    case 3: datumAendern(); break;
 	    case 4: break;
 	    case 5: break;
 	    case 6: break;
@@ -58,6 +59,8 @@ public class AdminUi {
 	}
     } // close: hauptMenue()
     
+    
+    // CASE 1
     public void mediumRegistrieren() {
 	vs.setListeMedien(new Buch("MobyDick"));
 	vs.setListeMedien(new Buch("Wortwelten"));
@@ -83,7 +86,30 @@ public class AdminUi {
 	vs.setListeMedien(new Videospiel("Controllerkiste"));
     }
     
+    
+    
+    // CASE 2
     public void gebuehrenueberarbeiten() {
 	
+    }
+    
+    
+    
+    // CASE 3
+    public void datumAendern() {
+	printDatum();
+	
+	System.out.println("Bitte Tag eingeben");
+	int tag = sc.nextInt();
+	System.out.println("Bitte Monat eingeben");
+	int monat = sc.nextInt();
+	System.out.println("Bitte Jahr eingeben");
+	int jahr = sc.nextInt();
+	vs.setDatum(tag, monat, jahr);
+    }
+    
+    public void printDatum() {
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	System.out.println("Datum: " +  vs.getDatum());
     }
 }

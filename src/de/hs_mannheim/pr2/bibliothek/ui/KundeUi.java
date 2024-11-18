@@ -97,11 +97,12 @@ public class KundeUi {
 
 
     public void setEigeneListeAusliehe(int idUser) {
-	((Kunde) vs.getListeKonten().get(idUser)).setEigeneListeAusliehe(vs.getListeAusliehen());
+	((Kunde) vs.getListeKonten().get(idUser)).setEigeneListeAusliehe(vs.getListeAusleihen());
     }
 
     
     public void printEigeneListeAusliehe(int idUser) {
+	
 
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	StringBuilder ausleihenAusgabe = new StringBuilder("Medien Ausleiheliste:\n");
@@ -109,13 +110,12 @@ public class KundeUi {
 	ArrayList<Integer> eigeneListeAusliehe = ((Kunde) vs.getListeKonten().get(idUser)).getEigeneListeAusliehe();
 	
 	for (Integer ii : eigeneListeAusliehe) {
-	    Ausleihe ausleihe = vs.getListeAusliehen().get(ii);
+	    Ausleihe ausleihe = vs.getListeAusleihen().get(ii);
 	    ausleihenAusgabe.append("\n" + ausleihe);
 	    ausleihenAusgabe.append("\n noch " + ausleihe.getAusleiheDauer() + " Tage übrig");
 	}
 	
 	System.out.println(ausleihenAusgabe.toString());
-	
     }
     
     /*

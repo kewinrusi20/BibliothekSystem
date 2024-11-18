@@ -7,14 +7,6 @@ public abstract class Medium {
     int id;
     String name;
     
-    // Ausleihe
-    boolean ausleiheStatus;
-    int ausleiheTage;
-    int maximaleAusleiheTage;
-    
-    // Verlängerung
-    boolean verlaengerbarkeit;
-    int maximaleVerlaengerbarkeit;
     
 
     // ---------------------------------------------------------
@@ -34,7 +26,7 @@ public abstract class Medium {
     // SETTER & GETTER
     // Id
     public void setId() {
-        this.id = (new Random()).nextInt(1000000);
+        this.id = (new Random()).nextInt(1000);
     }
     public void setId(int id) {
         this.id = id;
@@ -53,55 +45,10 @@ public abstract class Medium {
     }
 
     
-    // Ausleihe
-    public void setAusleihe(boolean ausleihe) {
-        this.ausleiheStatus = ausleihe;
-    }
-    public boolean isAusleihe() {
-        return ausleiheStatus;
-    }
-    
-
-    // AusleiheTage
-    public void setAusleiheTage(int ausleiheTage) {
-        this.ausleiheTage = ausleiheTage;
-    }
-    public int getAusleiheTage() {
-        return ausleiheTage;
-    }
-
-
-    // MaximaleAusleiheTage
-    public void setMaximaleAusleiheTage(int maximaleAusleiheTage) {
-        this.maximaleAusleiheTage = maximaleAusleiheTage;
-    }
-    public int getMaximaleAusleiheTage() {
-        return maximaleAusleiheTage;
-    }
-
-
-    // Verlaengerbarkeit
-    public void setVerlaengerbarkeit(boolean verlaengerbarkeit) {
-        this.verlaengerbarkeit = verlaengerbarkeit;
-    }
-    public boolean isVerlaengerbarkeit() {
-        return verlaengerbarkeit;
-    }
-
-    
-    // MaximaleVerlaengerbarkeit
-    public void setMaximaleVerlaengerbarkeit(int maximaleVerlaengerbarkeit) {
-        this.maximaleVerlaengerbarkeit = maximaleVerlaengerbarkeit;
-    }
-    public int getMaximaleVerlaengerbarkeit() {
-        return maximaleVerlaengerbarkeit;
-    }
-    
-    
     
     // -----------------------------------------------
     @Override
     public String toString() {
-	return String.format("Name: %s, ID: %s", getName(), getId());
+	return String.format("%s Name: %s, ID: %s", getClass().getSimpleName(), getName(), getId());
     }
 }
