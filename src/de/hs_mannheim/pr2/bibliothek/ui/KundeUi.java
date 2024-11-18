@@ -28,7 +28,7 @@ public class KundeUi {
     public void hauptMenue(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println("Willkommen " + vs.getListeKonten().get(idUser).getName());
-	printEigeneListeAusliehe(idUser);
+	printListeAusliehe_Privat(idUser);
 	
 	int eingabe;
 	
@@ -51,10 +51,10 @@ public class KundeUi {
 	    case 1: printListeMedien(); break;
 	    case 2: mediumAusleihen(idUser); break;
 	    case 3: mediumZurueckgeben(idUser); break;
-	    case 4: printEigeneListeAusliehe(idUser); break;
+	    case 4: printListeAusliehe_Privat(idUser); break;
 	    case 5: fristVerlaengern(idUser); break;
-	    case 6: break;
-	    case 7: break;
+	    case 6: bezahlen(idUser); break;
+	    case 7: printListeAusleihen_PrivatZuZahlen(idUser); break;
 	    case 8: break;
 	    case 9: break;
 	    case 0: break hauptmenue;
@@ -68,12 +68,13 @@ public class KundeUi {
     // CASE 1
     public void printListeMedien() {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	StringBuilder medienAusgabe = new StringBuilder("Medienliste:\n");
+	StringBuilder medienAusgabe = new StringBuilder("___Medienliste:___\n");
 
 	for (Medium medium : vs.getListeMedien().values()) {
 	    medienAusgabe.append(String.format("- %s\n", medium));
 	}
-
+	
+	medienAusgabe.append("\n-------------------------------------\n");
 	System.out.println(medienAusgabe.toString());
     }
 
@@ -81,40 +82,34 @@ public class KundeUi {
     
     // CASE 2
     public void mediumAusleihen(int idUser) {
-	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println("Bitte Medium Id eingeben");
 	vs.setListeAusleihen(idUser, sc.nextInt());
-	setEigeneListeAusliehe(idUser);
-	printEigeneListeAusliehe(idUser);
     }
 
 
 
     // CASE 3
     public void mediumZurueckgeben(int idUser) {
-	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	printEigeneListeAusliehe(idUser);
 	System.out.println("Bitte Ausleihe Id eingeben");
 	vs.setListAusleihe(sc.nextInt());
-	setEigeneListeAusliehe(idUser);
-	printEigeneListeAusliehe(idUser);
     }
 
 
     
     // CASE 4
-    public void printEigeneListeAusliehe(int idUser) {
+    public void printListeAusliehe_Privat(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	StringBuilder ausleihenAusgabe = new StringBuilder("Medien Ausleiheliste:\n");
+	StringBuilder ausleihenAusgabe = new StringBuilder("___Medien Ausleiheliste:___\n");
 	
-	ArrayList<Integer> eigeneListeAusliehe = ((Kunde) vs.getListeKonten().get(idUser)).getEigeneListeAusliehe();
+	ArrayList<Integer> eigeneListeAusliehe = ((Kunde) vs.getListeKonten().get(idUser)).getListeAusliehe_Privat();
 	
 	for (Integer ii : eigeneListeAusliehe) {
 	    Ausleihe ausleihe = vs.getListeAusleihen().get(ii);
 	    ausleihenAusgabe.append("\n" + ausleihe);
 	    ausleihenAusgabe.append("\n noch " + ausleihe.getAusleiheDauer() + " Tage übrig");
 	}
-	
+
+	ausleihenAusgabe.append("\n-------------------------------------\n");
 	System.out.println(ausleihenAusgabe.toString());
     }
     
@@ -122,8 +117,6 @@ public class KundeUi {
     
     // CASE 5
     public void fristVerlaengern(int idUser) {
-	printEigeneListeAusliehe(idUser);
-	
 	System.out.println("Bitte Ausleihe ID zum Verlängerung eingeben");
 	int idAusleihe = sc.nextInt();
 	
@@ -134,12 +127,27 @@ public class KundeUi {
 
     
     // CASE 6
-    public void bezahlen() {
-	
+    public void bezahlen(int idUser) {
+	System.out.println("Bitte Ausleihe Id für die Bezahlung eingeben");
+	vs.setListAusleihe_Bezahlen(sc.nextInt());
     }
     
     
-    public void setEigeneListeAusliehe(int idUser) {
-	((Kunde) vs.getListeKonten().get(idUser)).setEigeneListeAusliehe(vs.getListeAusleihen());
+    
+    // CASE 7
+    public void printListeAusleihen_PrivatZuZahlen(int idUser) {
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	StringBuilder zahlungenAusgabe = new StringBuilder("___Zahlungen Liste:___\n");
+	
+	ArrayList<Integer> listeAusliehen_privatZuZahlen = ((Kunde) vs.getListeKonten().get(idUser)).getListeAusliehe_PrivatZuZahlen();
+	
+	for (Integer ii : listeAusliehen_privatZuZahlen) {
+	    Ausleihe ausleihe = vs.getListeAusleihen().get(ii);
+	    zahlungenAusgabe.append("\n" + ausleihe);
+	    zahlungenAusgabe.append("\n noch " + ausleihe.getGebueren() + " zu zahlen");
+	}
+
+	zahlungenAusgabe.append("\n-------------------------------------\n");
+	System.out.println(zahlungenAusgabe.toString());
     }
 }

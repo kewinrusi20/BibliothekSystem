@@ -26,6 +26,10 @@ public class Ausleihe {
     int verlaengerbarkeit;
     int extraDauer;
     
+    int gebueren;
+
+
+
     public Ausleihe(User user, Medium medium, Datum datumAusleihe, Verwaltungssystem vs) {
 	this.vs = vs;
 	setUser(user);
@@ -125,7 +129,6 @@ public class Ausleihe {
     
 
     public void setAusleiheDauer() {
-	System.out.println("extraDauer: " + extraDauer);
 	ausleiheDauer =  (maximaleAusleiheDauer + extraDauer) - (vs.datum.getCounter() - datumAusleihe.getCounter());
     }
     public int getAusleiheDauer() {
@@ -151,17 +154,27 @@ public class Ausleihe {
         return verlaengerbarkeit;
     }
     
+    
+    
     public void setExtraDauer() {
-	System.out.println("extraDauer Verlängern: " + extraDauer);
-	
 	if (verlaengerbarkeit >= 1) {
 	    extraDauer += maximaleAusleiheDauer;
 	}
     }
-    
     public int getExtraDauer() {
 	return extraDauer;
     }
+    
+    
+    
+    public void setGebueren(int gebueren) {
+        this.gebueren = gebueren;
+    }
+    public int getGebueren() {
+        return gebueren;
+    }
+    
+    
     
     @Override
     public String toString() {

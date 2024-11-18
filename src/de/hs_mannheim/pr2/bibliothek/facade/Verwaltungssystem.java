@@ -5,6 +5,7 @@ import java.util.TreeMap;
 import de.hs_mannheim.pr2.bibliothek.domain.Ausleihe;
 import de.hs_mannheim.pr2.bibliothek.domain.Datum;
 import de.hs_mannheim.pr2.bibliothek.domain.medien.Medium;
+import de.hs_mannheim.pr2.bibliothek.domain.users.Kunde;
 import de.hs_mannheim.pr2.bibliothek.domain.users.User;
 
 public class Verwaltungssystem {
@@ -48,14 +49,28 @@ public class Verwaltungssystem {
     public void setListeAusleihen(int idKunde, int idMedium) {
 	Ausleihe ausleihe = new Ausleihe(listeKonten.get(idKunde), listeMedien.get(idMedium), getDatum(), this);
 	listeAusleihe.put(ausleihe.getIdAusleihe(), ausleihe);
+	setListeAusleihen_Privat(idKunde);
     }
     
     public void setListAusleihe(int idAusleihe) {
 	listeAusleihe.remove(idAusleihe);
     }
     
+    public void setListAusleihe_Bezahlen(int idAusleihe) {
+	listeAusleihe.get(idAusleihe).setDatumRueckgabe(datum);
+	listeAusleihe.get(idAusleihe).setGebueren(100);
+    }
+    
     public TreeMap<Integer, Ausleihe> getListeAusleihen(){
 	return listeAusleihe;
+    }
+    
+    
+    
+    
+    
+    public void setListeAusleihen_Privat(int idUser) {
+	((Kunde) listeKonten.get(idUser)).setListeAusliehe_privat(listeAusleihe);
     }
     
     
