@@ -1,6 +1,6 @@
 package de.hs_mannheim.pr2.bibliothek.ui;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.Scanner;
 
 import de.hs_mannheim.pr2.bibliothek.domain.users.Admin;
@@ -91,7 +91,7 @@ public class MainUi {
     }
     
     public void printKonten() {
-	HashMap<Integer, User> listeKonten = vs.getListeKonten();
+	TreeMap<Integer, User> listeKonten = vs.getListeKonten();
     	StringBuilder kontenAusgabe = new StringBuilder("Kontenliste:\n");
 
 	for (User user : listeKonten.values()) {

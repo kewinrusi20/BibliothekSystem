@@ -145,5 +145,10 @@ public class Ausleihe {
     public int getVerlaengerbarkeit() {
         return verlaengerbarkeit;
     }
+    
+    @Override
+    public String toString() {
+	return String.format("- ID Medium: %s, ID Kunde: %s", getIdMedium(), getIdKunde());
+    }
 
 }

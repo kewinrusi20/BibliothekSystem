@@ -1,6 +1,6 @@
 package de.hs_mannheim.pr2.bibliothek.facade;
 
-import java.util.HashMap;
+import java.util.TreeMap;
 
 import de.hs_mannheim.pr2.bibliothek.domain.Ausleihe;
 import de.hs_mannheim.pr2.bibliothek.domain.Datum;
@@ -8,9 +8,9 @@ import de.hs_mannheim.pr2.bibliothek.domain.medien.Medium;
 import de.hs_mannheim.pr2.bibliothek.domain.users.User;
 
 public class Verwaltungssystem {
-    private HashMap<Integer, User> listeKonten = new HashMap<>();
-    private HashMap<Integer, Medium> listeMedien = new HashMap<>();
-    private HashMap<Integer, Ausleihe> listeAusleihe = new HashMap<>();
+    private TreeMap<Integer, User> listeKonten = new TreeMap<>();
+    private TreeMap<Integer, Medium> listeMedien = new TreeMap<>();
+    private TreeMap<Integer, Ausleihe> listeAusleihe = new TreeMap<>();
     public static Datum datum = new Datum(17, 11, 2024);
 
 
@@ -21,7 +21,7 @@ public class Verwaltungssystem {
         listeKonten.put(user.getId(), user);
     }
 
-    public HashMap<Integer, User> getListeKonten() {
+    public TreeMap<Integer, User> getListeKonten() {
         return listeKonten;
     }
 
@@ -37,7 +37,7 @@ public class Verwaltungssystem {
 	listeMedien.put(medium.getId(), medium);
     }
     
-    public HashMap<Integer, Medium> getListeMedien() {
+    public TreeMap<Integer, Medium> getListeMedien() {
 	return listeMedien;
     }
     
@@ -54,7 +54,7 @@ public class Verwaltungssystem {
 	listeAusleihe.remove(idAusleihe);
     }
     
-    public HashMap<Integer, Ausleihe> getListeAusliehen(){
+    public TreeMap<Integer, Ausleihe> getListeAusliehen(){
 	return listeAusleihe;
     }
     

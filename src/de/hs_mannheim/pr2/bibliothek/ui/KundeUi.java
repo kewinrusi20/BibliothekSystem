@@ -1,10 +1,12 @@
 package de.hs_mannheim.pr2.bibliothek.ui;
 
-import java.util.HashMap;
+import java.util.TreeMap;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import de.hs_mannheim.pr2.bibliothek.domain.Ausleihe;
 import de.hs_mannheim.pr2.bibliothek.domain.medien.Medium;
+import de.hs_mannheim.pr2.bibliothek.domain.users.Kunde;
 import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 
 public class KundeUi {
@@ -26,7 +28,7 @@ public class KundeUi {
     public void hauptMenue(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println("Willkommen " + vs.getListeKonten().get(idUser).getName());
-	kontoInfo(idUser);
+	printEigeneListeAusliehe(idUser);
 	
 	int eingabe;
 	
@@ -49,7 +51,7 @@ public class KundeUi {
 	    case 1: printListeMedien(); break;
 	    case 2: mediumAusleihen(idUser); break;
 	    case 3: mediumZurueckgeben(idUser); break;
-	    case 4: kontoInfo(idUser); break;
+	    case 4: printEigeneListeAusliehe(idUser); break;
 	    case 5: break;
 	    case 6: break;
 	    case 7: break;
@@ -76,22 +78,47 @@ public class KundeUi {
 
     public void mediumAusleihen(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	kontoInfo(idUser);
 	System.out.println("Bitte Medium Id eingeben");
 	vs.setListeAusleihen(idUser, sc.nextInt());
+	setEigeneListeAusliehe(idUser);
+	printEigeneListeAusliehe(idUser);
     }
 
 
 
     public void mediumZurueckgeben(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	kontoInfo(idUser);
+	printEigeneListeAusliehe(idUser);
 	System.out.println("Bitte Ausleihe Id eingeben");
 	vs.setListAusleihe(sc.nextInt());
+	setEigeneListeAusliehe(idUser);
+	printEigeneListeAusliehe(idUser);
     }
 
 
+    public void setEigeneListeAusliehe(int idUser) {
+	((Kunde) vs.getListeKonten().get(idUser)).setEigeneListeAusliehe(vs.getListeAusliehen());
+    }
 
+    
+    public void printEigeneListeAusliehe(int idUser) {
+
+	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	StringBuilder ausleihenAusgabe = new StringBuilder("Medien Ausleiheliste:\n");
+	
+	ArrayList<Integer> eigeneListeAusliehe = ((Kunde) vs.getListeKonten().get(idUser)).getEigeneListeAusliehe();
+	
+	for (Integer ii : eigeneListeAusliehe) {
+	    Ausleihe ausleihe = vs.getListeAusliehen().get(ii);
+	    ausleihenAusgabe.append("\n" + ausleihe);
+	    ausleihenAusgabe.append("\n noch " + ausleihe.getAusleiheDauer() + " Tage übrig");
+	}
+	
+	System.out.println(ausleihenAusgabe.toString());
+	
+    }
+    
+    /*
     public void kontoInfo(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	StringBuilder ausleihenAusgabe = new StringBuilder("Medien Ausleiheliste:\n");
@@ -104,7 +131,7 @@ public class KundeUi {
 	}
 	System.out.println(ausleihenAusgabe.toString());
     }
-
+     */
 
 
     public void fristVerlaengern() {
