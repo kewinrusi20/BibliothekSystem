@@ -28,7 +28,6 @@ public class KundeUi {
     public void hauptMenue(int idUser) {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println("Willkommen " + vs.getListeKonten().get(idUser).getName());
-	printListeAusliehe_Privat(idUser);
 	
 	int eingabe;
 	
@@ -41,7 +40,8 @@ public class KundeUi {
 	    
 	    System.out.println("4: Konto Info");
 	    System.out.println("5: Frist Verlängern");
-	    System.out.println("6: Bezahlen");
+	    System.out.println("6: Rechnung Begliechen");
+	    System.out.println("7: Liste zu zahlen");
 	    System.out.println("---------------------\n");
 	    
 	    
@@ -51,9 +51,10 @@ public class KundeUi {
 	    case 1: printListeMedien(); break;
 	    case 2: mediumAusleihen(idUser); break;
 	    case 3: mediumZurueckgeben(idUser); break;
+	    
 	    case 4: printListeAusliehe_Privat(idUser); break;
 	    case 5: fristVerlaengern(idUser); break;
-	    case 6: bezahlen(idUser); break;
+	    case 6: rechnungBeglichen(idUser); break;
 	    case 7: printListeAusleihen_PrivatZuZahlen(idUser); break;
 	    case 8: break;
 	    case 9: break;
@@ -91,7 +92,8 @@ public class KundeUi {
     // CASE 3
     public void mediumZurueckgeben(int idUser) {
 	System.out.println("Bitte Ausleihe Id eingeben");
-	vs.setListAusleihe(sc.nextInt());
+	vs.setListeAusleihen_Rueckgabe(sc.nextInt());
+	vs.setListeAusleihen_Privat(idUser);
     }
 
 
@@ -127,9 +129,15 @@ public class KundeUi {
 
     
     // CASE 6
-    public void bezahlen(int idUser) {
-	System.out.println("Bitte Ausleihe Id für die Bezahlung eingeben");
-	vs.setListAusleihe_Bezahlen(sc.nextInt());
+    public void rechnungBeglichen(int idUser) {
+	System.out.println("_______________________________________________________");
+	System.out.println("Gesamtgebühren von: " + ((Kunde) vs.getListeKonten().get(idUser)).getGesamtGebuehren());
+	System.out.println("Möchten Sie die Rechnung beglichen?");
+	System.out.println("1 für Ja");
+	System.out.println("0 für Nein");
+	if (sc.nextInt() == 1) {
+	    // ...
+	}
     }
     
     

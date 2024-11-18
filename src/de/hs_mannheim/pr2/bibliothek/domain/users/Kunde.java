@@ -30,11 +30,11 @@ public abstract class Kunde extends User {
 		
         for (Ausleihe ausleihe : listeAusliehe.values()) {
             if (ausleihe.getIdKunde() == this.id) {
-             	if (ausleihe.getDatumRueckgabe() != null) {
+             	if (ausleihe.getDatumRueckgabe() == null) {
              	    listeAusliehe_Privat.add(ausleihe.getIdAusleihe());
              	} else {
              	    listeAusliehe_PrivatZuZahlen.add(ausleihe.getIdAusleihe());
-             	    gesamtGebuehren += ausleihe.getGebueren();
+             	    setGesamtGebuehren(ausleihe.getGebueren());
              	}
             }
 	}
@@ -45,5 +45,11 @@ public abstract class Kunde extends User {
     
     public ArrayList<Integer> getListeAusliehe_PrivatZuZahlen() {
 	return listeAusliehe_PrivatZuZahlen;
+    }
+    public int getGesamtGebuehren() {
+        return gesamtGebuehren;
+    }
+    public void setGesamtGebuehren(int gebuehren) {
+        this.gesamtGebuehren += gebuehren;
     }
 }

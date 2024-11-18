@@ -39,15 +39,16 @@ public class AdminUi {
 	    System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	    //System.out.println("1: Medium Registieren");
 	    System.out.println("2: Gebühren überarbeiten");
-	    System.out.println("3: Datum Ändern");
+	    System.out.println("3: Medium Entfernen");
+	    System.out.println("4: Datum Ändern");
 	    System.out.println("---------------------\n");
 	    
 	    eingabe = sc.nextInt();
 	    switch (eingabe) {
 	    //case 1: mediumRegistrieren(); break;
 	    case 2: gebuehrenueberarbeiten(); break;
-	    case 3: datumAendern(); break;
-	    case 4: break;
+	    case 3: mediumEntfernen(); break;
+	    case 4: datumAendern(); break;
 	    case 5: break;
 	    case 6: break;
 	    case 7: break;
@@ -93,9 +94,15 @@ public class AdminUi {
 	
     }
     
-    
-    
     // CASE 3
+    public void mediumEntfernen() {
+	System.out.println("Bitte Ausleihe Id eingeben");
+	vs.setListAusleihe_Entfernung(sc.nextInt());
+    }
+    
+    
+    
+    // CASE 4
     public void datumAendern() {
 	printDatum();
 	

@@ -52,11 +52,11 @@ public class Verwaltungssystem {
 	setListeAusleihen_Privat(idKunde);
     }
     
-    public void setListAusleihe(int idAusleihe) {
+    public void setListAusleihe_Entfernung(int idAusleihe) {
 	listeAusleihe.remove(idAusleihe);
     }
     
-    public void setListAusleihe_Bezahlen(int idAusleihe) {
+    public void setListeAusleihen_Rueckgabe(int idAusleihe) {
 	listeAusleihe.get(idAusleihe).setDatumRueckgabe(datum);
 	listeAusleihe.get(idAusleihe).setGebueren(100);
     }
