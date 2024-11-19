@@ -130,14 +130,16 @@ public class KundeUi {
     
     // CASE 6
     public void rechnungBeglichen(int idUser) {
+	int liveKontostand = ((Kunde) vs.getListeKonten().get(idUser)).getGesamtGebuehren();
+	
 	System.out.println("_______________________________________________________");
-	System.out.println("Gesamtgebühren von: " + ((Kunde) vs.getListeKonten().get(idUser)).getGesamtGebuehren());
-	System.out.println("Möchten Sie die Rechnung beglichen?");
-	System.out.println("1 für Ja");
-	System.out.println("0 für Nein");
-	if (sc.nextInt() == 1) {
-	    // ...
-	}
+	System.out.println("Gesamtgebühren von: " + liveKontostand);
+	System.out.println("Bitte Geld Einzahlen");
+	
+	int neuesKontostand = sc.nextInt();
+	liveKontostand = vs.rechnungBeglichen(idUser, neuesKontostand);
+	
+	System.out.println("Ihr Kontostand beträgt " + liveKontostand + " €");
     }
     
     

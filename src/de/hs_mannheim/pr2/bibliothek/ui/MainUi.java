@@ -66,6 +66,8 @@ public class MainUi {
     } // close: hauptMenue()
     
     
+    
+    // CASE 1
     public void kontoAnmelden() {
 	System.out.println("Bitte Konto ID eingabe:");
 	int eingabe = sc.nextInt();
@@ -80,6 +82,9 @@ public class MainUi {
 	}
     }
     
+    
+    
+    // CASE 2
     public void kontoRegistieren() {
 //	vs.kontoRegistieren(new Admin("Anton"));
 //	vs.kontoRegistieren(new Lernende("Bob"));
@@ -90,6 +95,9 @@ public class MainUi {
 	vs.setListeKonten(new Vollzahler("Andrea", 3003));;
     }
     
+    
+    
+    // CASE 3
     public void printKonten() {
 	TreeMap<Integer, User> listeKonten = vs.getListeKonten();
     	StringBuilder kontenAusgabe = new StringBuilder("Kontenliste:\n");

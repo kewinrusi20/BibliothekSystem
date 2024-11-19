@@ -10,10 +10,12 @@ import de.hs_mannheim.pr2.bibliothek.domain.medien.Medium;
 public abstract class Kunde extends User {
     private ArrayList<Integer> listeAusliehe_Privat = new ArrayList<>();
     private ArrayList<Integer> listeAusliehe_PrivatZuZahlen = new ArrayList<>();
-    private int gesamtGebuehren; 
+    private int gesamtGebuehren;
+    private int kontostand;
     
 
     
+
     // ---------------------------------------------------------
     // KONSTRUKTOR    
     public Kunde(String name) {
@@ -46,10 +48,23 @@ public abstract class Kunde extends User {
     public ArrayList<Integer> getListeAusliehe_PrivatZuZahlen() {
 	return listeAusliehe_PrivatZuZahlen;
     }
+    
+    
+    
     public int getGesamtGebuehren() {
         return gesamtGebuehren;
     }
     public void setGesamtGebuehren(int gebuehren) {
         this.gesamtGebuehren += gebuehren;
     }
+    
+    
+    
+    public void setKontostand(int eingezahlt) {
+        this.kontostand = eingezahlt;
+    }
+    public int getKontostand() {
+        return kontostand;
+    }
+
 }
