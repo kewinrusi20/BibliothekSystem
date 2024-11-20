@@ -104,7 +104,8 @@ public class AdminUi {
 	    Kunde kunde = (Kunde) user;
 	    if (kunde.getGesamtGebuehren() > 0) {
 		if (kunde.getGesamtGebuehren() == kunde.getKontostand()) {
-		    listeAusliehe_PrivatZuZahlen = kunde.getListeAusliehe_PrivatZuZahlen();		}
+		    listeAusliehe_PrivatZuZahlen = kunde.getListeAusliehe_PrivatZuZahlen();
+		    }
 	    }	
 	}
 	
