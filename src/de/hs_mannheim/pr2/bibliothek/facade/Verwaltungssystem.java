@@ -75,6 +75,15 @@ public class Verwaltungssystem {
     
     
     
+    
+    public int rechnungBeglichen(int idUser, int betrag) {
+	((Kunde) getListeKonten().get(idUser)).setKontostand(betrag);
+	
+	return ((Kunde) getListeKonten().get(idUser)).getKontostand();
+    }
+    
+    
+    
     // ---------------------------------------------------------
     // DATUM
     public void setDatum(int tag, int monat, int jahr) {
