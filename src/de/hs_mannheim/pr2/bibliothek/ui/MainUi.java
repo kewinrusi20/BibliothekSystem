@@ -14,7 +14,6 @@ public class MainUi {
     Verwaltungssystem vs;
     AdminUi adminUi;
     KundeUi kundeUi;
-    
     Scanner sc;
 
     
