@@ -1,6 +1,7 @@
 package de.hs_mannheim.pr2.bibliothek.ui;
 
 import java.util.TreeMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 import de.hs_mannheim.pr2.bibliothek.domain.users.Admin;
@@ -46,8 +47,18 @@ public class MainUi {
 	    System.out.println("9: Close Program");
 	    System.out.println("-------------------\n");
 	    
+
 	    
-	    int eingabe = catchInput();
+	    int eingabe = Integer.MIN_VALUE;
+	    try {
+		eingabe = sc.nextInt();
+	    } catch (InputMismatchException e) {
+		System.out.println("(!) Wrong Character, try again");
+		sc = (new Scanner(System.in));
+		continue;
+	    }
+	    
+	    
 	    
 	    switch (eingabe) {
 	    case 1: 
@@ -61,10 +72,10 @@ public class MainUi {
 		break;
 	    case 4:
 		continue;
-    	    case 9:
+    	    case 0:
     		break mainmenu;
     	    default:
-    		System.out.println("Wrong Number, try again");
+    		System.out.println("(!) Wrong Number, try again");
 	    }
 	}
 	sc.close();
@@ -75,7 +86,16 @@ public class MainUi {
     // CASE 1
     public void kontoAnmelden() {
 	System.out.println("Bitte Konto ID eingabe:");
-	int eingabe = catchInput();
+	
+	int eingabe = Integer.MIN_VALUE;
+	try {
+	    eingabe = sc.nextInt();
+	} catch (InputMismatchException e) {
+	    System.out.println("Wrong Character, try again");
+	    sc = (new Scanner(System.in));
+	    return;
+	}
+	
 	if (vs.isKontoDa(eingabe)) {
 	    if (vs.getListeKonten().get(eingabe) instanceof Kunde) {
 		kundeUi.hauptMenue(eingabe);
@@ -84,6 +104,8 @@ public class MainUi {
 	    }
 	    
 	    
+	} else {
+	    System.out.println("(!) Konto nummer nicht vorhanden");
 	}
     }
     
@@ -118,12 +140,12 @@ public class MainUi {
     // ---------------------------------------------------------------------
     @SuppressWarnings("resource")
     public int catchInput() {
-	int eingabe = 0;
+	int eingabe = Integer.MIN_VALUE;
 	try {
 	    eingabe = sc.nextInt();
-	} catch (Exception e) {
+	} catch (InputMismatchException e) {
 	    System.out.println("Wrong Character, try again");
-		sc = (new Scanner(System.in));
+	    sc = (new Scanner(System.in));
 	}
 	return eingabe;
     }
