@@ -25,10 +25,7 @@ public class MainUi {
 	this.vs = vs;
 	adminUi = new AdminUi(vs);
 	kundeUi = new KundeUi(vs);
-	sc = new Scanner(System.in)
 
-	System.out.println("Willkommen in unserer Bibliothek\n");
-	
 	// Hard Coding Objects
 	kontoRegistieren();
     }
@@ -113,19 +110,6 @@ public class MainUi {
 	}
 
 	System.out.println(kontenAusgabe.toString());
-    }
-    
-    
-    // ---------------------------------------------------------------------
-    @SuppressWarnings("resource")
-    public int catchInput() {
-	int eingabe = 0;
-	try {
-	    eingabe = (new Scanner(System.in)).nextInt();
-	} catch (Exception e) {
-	    System.out.println("Wrong Character, try again");
-	}
-	return eingabe;
     }
     
 }
