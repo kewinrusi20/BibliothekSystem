@@ -26,14 +26,12 @@ public class KundeUi {
     // ---------------------------------------------------------
     // PROGRAM LOOP
     public void hauptMenue(int idUser) {
-	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println("Willkommen " + vs.getListeKonten().get(idUser).getName());
 	
 	int eingabe;
 	
 	hauptmenue:
 	while(true) {
-	    System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	    System.out.println("1: Medien ausdrücken");
 	    System.out.println("2: Medium ausleihen");
 	    System.out.println("3: Medium zurückgeben\n");
