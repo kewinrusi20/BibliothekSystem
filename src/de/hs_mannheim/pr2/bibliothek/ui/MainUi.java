@@ -11,10 +11,11 @@ import de.hs_mannheim.pr2.bibliothek.domain.users.Vollzahler;
 import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 
 public class MainUi {
-    Scanner sc = new Scanner(System.in);
     Verwaltungssystem vs;
     AdminUi adminUi;
     KundeUi kundeUi;
+    
+    Scanner sc;
 
     
     
@@ -24,11 +25,12 @@ public class MainUi {
 	this.vs = vs;
 	adminUi = new AdminUi(vs);
 	kundeUi = new KundeUi(vs);
+	sc = new Scanner(System.in)
 
+	System.out.println("Willkommen in unserer Bibliothek\n");
+	
 	// Hard Coding Objects
 	kontoRegistieren();
-	
-	System.out.println("Willkommen in unserer Bibliothek");
     }
 
     
@@ -36,39 +38,45 @@ public class MainUi {
     // ---------------------------------------------------------
     // PROGRAM LOOP
     public void hauptMenue() {
-	int eingabe;
-	
-	hauptmenue:
+	mainmenu:
 	while(true) {
-	    System.out.print("\n\n\n\n\n\n\n\n\n\n");
+	    System.out.println("\n___MAIN MENU___");
 	    System.out.println("1: Anmelung");
-	    //System.out.println("2: Registrieren");
+	    System.out.println("2: Registrieren");
 	    System.out.println("3: Konte ausdrücken");
-	    System.out.println("---------------------\n");
+	    System.out.println("9: Close Program");
+	    System.out.println("-------------------\n");
 	    
 	    
+	    int eingabe = catchInput();
 	    
-	    eingabe = sc.nextInt();
 	    switch (eingabe) {
-	    case 1: kontoAnmelden(); break;
-	    //case 2: kontoRegistieren(); break;
-	    case 3: printKonten(); break;
-	    case 4: break;
-	    case 5: break;
-	    case 6: break;
-	    case 7: break;
-	    case 8: break;
-	    case 9: break;
-	    case 0: break hauptmenue;
+	    case 1: 
+    		kontoAnmelden();
+    		System.out.print("\n\n\n\n\n\n\n\n\n\n\n");
+    		break;
+	    case 2: kontoRegistieren(); break;
+	    case 3: 
+		printKonten();
+		System.out.print("\n\n\n\n\n\n\n\n\n\n\n");
+		break;
+	    case 4:
+		continue;
+    	    case 9:
+    		break mainmenu;
+    	    default:
+    		System.out.println("Wrong Number, try again");
 	    }
-	    
 	}
+	sc.close();
     } // close: hauptMenue()
     
     
+    
+    // CASE 1
     public void kontoAnmelden() {
 	System.out.println("Bitte Konto ID eingabe:");
-	int eingabe = sc.nextInt();
+	int eingabe = catchInput();
 	if (vs.isKontoDa(eingabe)) {
 	    if (vs.getListeKonten().get(eingabe) instanceof Kunde) {
 		kundeUi.hauptMenue(eingabe);
@@ -80,16 +88,22 @@ public class MainUi {
 	}
     }
     
+    
+    
+    // CASE 2
     public void kontoRegistieren() {
 //	vs.kontoRegistieren(new Admin("Anton"));
 //	vs.kontoRegistieren(new Lernende("Bob"));
 //	vs.kontoRegistieren(new Vollzahler("Andrea"));;
-	System.out.println("Die Konten werden registriet ...");
+	System.out.println("Die Konten werden registriet ...\n");
 	vs.setListeKonten(new Admin("Anton", 1001));
 	vs.setListeKonten(new Lernende("Bob", 2002));
 	vs.setListeKonten(new Vollzahler("Andrea", 3003));;
     }
     
+    
+    
+    // CASE 3
     public void printKonten() {
 	TreeMap<Integer, User> listeKonten = vs.getListeKonten();
     	StringBuilder kontenAusgabe = new StringBuilder("Kontenliste:\n");
@@ -98,8 +112,20 @@ public class MainUi {
 	    kontenAusgabe.append(String.format("- %s\n", user));
 	}
 
-	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println(kontenAusgabe.toString());
+    }
+    
+    
+    // ---------------------------------------------------------------------
+    @SuppressWarnings("resource")
+    public int catchInput() {
+	int eingabe = 0;
+	try {
+	    eingabe = (new Scanner(System.in)).nextInt();
+	} catch (Exception e) {
+	    System.out.println("Wrong Character, try again");
+	}
+	return eingabe;
     }
     
 }

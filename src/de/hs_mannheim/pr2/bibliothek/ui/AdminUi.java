@@ -1,12 +1,16 @@
 package de.hs_mannheim.pr2.bibliothek.ui;
 
+import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 import de.hs_mannheim.pr2.bibliothek.domain.medien.Brettspiel;
 import de.hs_mannheim.pr2.bibliothek.domain.medien.Buch;
 import de.hs_mannheim.pr2.bibliothek.domain.medien.Cd;
 import de.hs_mannheim.pr2.bibliothek.domain.medien.Dvd;
 import de.hs_mannheim.pr2.bibliothek.domain.medien.Videospiel;
+import de.hs_mannheim.pr2.bibliothek.domain.users.Kunde;
+import de.hs_mannheim.pr2.bibliothek.domain.users.User;
 import de.hs_mannheim.pr2.bibliothek.facade.Verwaltungssystem;
 
 public class AdminUi {
@@ -39,7 +43,7 @@ public class AdminUi {
 	    System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	    //System.out.println("1: Medium Registieren");
 	    System.out.println("2: Gebühren überarbeiten");
-	    System.out.println("3: Medium Entfernen");
+	    //System.out.println("3: Medium Entfernen");
 	    System.out.println("4: Datum Ändern");
 	    System.out.println("---------------------\n");
 	    
@@ -47,7 +51,7 @@ public class AdminUi {
 	    switch (eingabe) {
 	    //case 1: mediumRegistrieren(); break;
 	    case 2: gebuehrenueberarbeiten(); break;
-	    case 3: mediumEntfernen(); break;
+	    //case 3: mediumEntfernen(); break;
 	    case 4: datumAendern(); break;
 	    case 5: break;
 	    case 6: break;
@@ -61,6 +65,8 @@ public class AdminUi {
     } // close: hauptMenue()
     
     
+
+    // ---------------------------------------------------------
     // CASE 1
     public void mediumRegistrieren() {
 	vs.setListeMedien(new Buch("MobyDick"));
@@ -91,8 +97,26 @@ public class AdminUi {
     
     // CASE 2
     public void gebuehrenueberarbeiten() {
+	ArrayList<Integer> listeAusliehe_PrivatZuZahlen = new ArrayList<>();
 	
+	
+	for (User user : vs.getListeKonten().values()) {
+	    Kunde kunde = (Kunde) user;
+	    if (kunde.getGesamtGebuehren() > 0) {
+		if (kunde.getGesamtGebuehren() == kunde.getKontostand()) {
+		    listeAusliehe_PrivatZuZahlen = kunde.getListeAusliehe_PrivatZuZahlen();
+		    }
+	    }	
+	}
+	
+	if (!listeAusliehe_PrivatZuZahlen.isEmpty()) {
+	    for (Integer ii : listeAusliehe_PrivatZuZahlen ) {
+		vs.getListeAusleihen().remove(ii);
+	    }
+	}
     }
+    
+    
     
     // CASE 3
     public void mediumEntfernen() {
@@ -115,6 +139,9 @@ public class AdminUi {
 	vs.setDatum(tag, monat, jahr);
     }
     
+
+    // ---------------------------------------------------------
+    // MORE
     public void printDatum() {
 	System.out.print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	System.out.println("Datum: " +  vs.getDatum());
