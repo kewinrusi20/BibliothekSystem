@@ -25,7 +25,7 @@ public class MainUi {
 	this.vs = vs;
 	adminUi = new AdminUi(vs);
 	kundeUi = new KundeUi(vs);
-	sc = new Scanner(System.in)
+	sc = new Scanner(System.in);
 
 	System.out.println("Willkommen in unserer Bibliothek\n");
 	
@@ -121,9 +121,10 @@ public class MainUi {
     public int catchInput() {
 	int eingabe = 0;
 	try {
-	    eingabe = (new Scanner(System.in)).nextInt();
+	    eingabe = sc.nextInt();
 	} catch (Exception e) {
 	    System.out.println("Wrong Character, try again");
+		sc = (new Scanner(System.in));
 	}
 	return eingabe;
     }
